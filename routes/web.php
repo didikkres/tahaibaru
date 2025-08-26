@@ -1,0 +1,117 @@
+<?php
+/*
+|--------------------------------------------------------------------------
+| Web Routes
+|--------------------------------------------------------------------------
+|
+| Here is where you can register web routes for your application. These
+| routes are loaded by the RouteServiceProvider within a group which
+| contains the "web" middleware group. Now create something great!
+|
+*/
+
+Route::get('/','HomeWebController@index')->name('home');
+Route::get('/apbdeshome','ApbdesController@home');
+Route::get('/berita','BeritaController@index');
+Route::get('/bacaberita/{id}','BeritaController@baca');
+Route::get('/galeryhome','GaleryController@home');
+Route::get('/surat','SuratController@index');
+Route::get('/cari/{ket}','SuratController@cari');
+Route::get('/carinik','SuratController@carinik');
+Route::post('/createsurat','SuratController@create');
+Route::post('/postlogin','AuthController@postlogin');
+Route::get('/bltdd','BltddController@home');
+Route::get('/sejarah','ProfilController@index');
+Route::get('/kelurahan','ProfilController@kelurahan');
+Route::get('/visimisi','ProfilController@visimisi');
+    Route::get('/karangtaruna','LkkController@karangtaruna');
+    Route::get('/pkk','LkkController@pkk');
+    Route::get('/lpmk','LkkController@lpmk');
+    Route::get('/rtku','LkkController@rt');
+    Route::get('/posyandu','LkkController@posyandu');
+    Route::get('/pembangunan','PembangunanController@index');
+    Route::get('/pembangunandetail/{id}','PembangunanController@detail');
+Route::group(['middleware'=> 'auth'],function(){
+    Route::get('/dashboard','DashboardController@index');
+    Route::get('/beritaadmin','BeritaAdminController@index');
+    Route::get('/beritaadminread','BeritaAdminController@read');
+    Route::get('/beritaadminedit/{id}','BeritaAdminController@edit');
+    Route::put('/beritaadminpost/{id}','BeritaAdminController@update');
+    Route::get('/beritaadmin/{id}/delete','BeritaAdminController@delete');
+    Route::post('/beritaadminpost','BeritaAdminController@create');
+    Route::get('/galery','GaleryController@index');
+    Route::get('/galeryadminedit/{id}','GaleryController@edit');
+    Route::put('/galeryadminpost/{id}','GaleryController@update');
+    Route::get('/galeryadmin/{id}/delete','GaleryController@delete');
+    Route::post('/galeryadminpost','GaleryController@create');
+    //Karangtaruna
+    Route::get('/lkkadmin','LkkController@lkkadmin');
+    Route::post('/lkk','LkkController@create');
+    Route::get('/profilad','ProfilController@profilad');
+    Route::get('/profiledit/{id}','ProfilController@profiledit');
+    Route::post('/profileditya/{id}','ProfilController@profileditya');
+    
+    Route::get('/apbdes','ApbdesController@index');
+    Route::get('/apbdesadminedit/{id}','ApbdesController@edit');
+    Route::put('/apbdesadminpost/{id}','ApbdesController@update');
+    Route::get('/apbdesadmin/{id}/delete','ApbdesController@delete');
+    Route::post('/apbdesadminpost','ApbdesController@create');
+    Route::get('/rt','RtAdminController@index');
+    Route::post('/rt','RtAdminController@create');
+    Route::get('/rt/{id}/delete','RtAdminController@delete');
+    Route::get('/rw','RwAdminController@index');
+    Route::post('/rw','RwAdminController@create');
+    Route::get('/rw/{id}/delete','RwAdminController@delete');
+    Route::get('/kk','KkAdminController@index');
+    Route::post('/kk','KkAdminController@create');
+    Route::get('/kk/{id}/delete','KkAdminController@delete');
+    Route::get('/kkread/{id}','KkreadAdminController@index');
+    Route::post('/kkread/{id}','KkreadAdminController@create');
+    Route::get('/kkedit/{id}','KkreadAdminController@edit');
+    Route::get('/kluargaedit/{id}','KkreadAdminController@kluargaedit');
+    Route::put('/kkupdate/{id}','KkreadAdminController@update');
+    Route::put('/keluargaupdate/{id}','KkreadAdminController@kluargaupdate');
+    Route::get('/kkread/{id}/delete/{kk}','KkreadAdminController@delete');
+    Route::get('/penduduk','PendudukAdminController@index');
+    Route::post('/penduduk/cari','PendudukAdminController@cari');
+    Route::get('/suratadmin','SuratAdminController@index');
+    Route::get('/keluhan','KeluhanController@index');
+    Route::post('/postkeluhan','KeluhanController@create');
+    Route::get('/padmin','PembangunanController@read');
+    Route::post('/padmin','PembangunanController@create');
+    Route::get('/padmin/{id}/delete','PembangunanController@delete');
+    Route::get('/badmin','BltddController@read');
+    Route::post('/badmin','BltddController@create');
+    Route::get('/badmin/{id}/delete','BltddController@delete');
+    //Link Konfirmasi
+    Route::get('/suket/{id}','SuratAdminController@konfir');
+    Route::get('/skpo/{id}','SuratAdminController@skpo');
+    Route::get('/domisil/{id}','SuratAdminController@konfir');
+    Route::get('/sku/{id}','SuratAdminController@sku');
+    Route::get('/spn/{id}','SuratAdminController@spn');
+    Route::get('/spnk/{id}','SuratAdminController@spnk');
+    Route::get('/skck/{id}','SuratAdminController@skck');
+    Route::get('/ktp/{id}','SuratAdminController@ktp');
+    Route::get('/spik/{id}','SuratAdminController@spik');
+    //post
+    Route::put('/postsurat/{id}','SuratAdminController@post');
+    Route::put('/postskpo/{id}','SuratAdminController@postskpo');
+    Route::put('/postsku/{id}','SuratAdminController@postsku');
+    Route::post('/postspn/{id}','SuratAdminController@postspn');
+    Route::post('/postskck/{id}','SuratAdminController@postskck');
+    Route::post('/postktp/{id}','SuratAdminController@postktp');
+    Route::put('/postspik/{id}','SuratAdminController@postspik');
+
+    Route::get('/suratselesai','SuratAdminController@read');
+    //Cetak
+    Route::get('/suketcetak/{id}','CetakController@index');
+    Route::get('/skpocetak/{id}','CetakController@skpo');
+    Route::get('/domisilcetak/{id}','CetakController@domisil');
+    Route::get('/skucetak/{id}','CetakController@sku');
+    Route::get('/spncetak/{id}','CetakController@spn');
+    Route::get('/spnkcetak/{id}','CetakController@spnk');
+    Route::get('/skckcetak/{id}','CetakController@skck');
+    Route::get('/ktpcetak/{id}','CetakController@ktp');
+    Route::get('/spikcetak/{id}','CetakController@spik');
+});
+Route::get('/logout','AuthController@logout');
